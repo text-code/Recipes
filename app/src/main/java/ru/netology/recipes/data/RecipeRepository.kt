@@ -8,5 +8,10 @@ interface RecipeRepository {
     val data: LiveData<List<Recipe>>
 
     fun favorite(recipeId: Long)
+    fun save(recipe: Recipe)
+    fun delete(recipeId: Long)
 
+    companion object {
+        const val NEW_RECIPE_ID = 0L
+    }
 }

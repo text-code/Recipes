@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Recipes</string>
+    <string name="remove">Remove</string>
+    <string name="recipe_text">Recipe Text</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
 </resources>
