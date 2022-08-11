@@ -61,13 +61,10 @@ internal class RecipeAdapter(
                 authorName.text = recipe.authorName
                 recipeName.text = recipe.recipeName
                 recipeContent.text = recipe.content
-                favorite.setImageResource(getFavoriteIconResId(recipe.favorite))
+                favorite.isChecked = recipe.favorite
                 menu.setOnClickListener { popupMenu.show() }
             }
         }
-
-        private fun getFavoriteIconResId(favorite: Boolean) =
-            if (favorite) R.drawable.ic_star_gold_24dp else R.drawable.ic_star_border_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Recipe>() {

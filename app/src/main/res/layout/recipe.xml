@@ -69,16 +69,17 @@
         android:layout_marginTop="8dp"
         />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:button="@drawable/ic_favorite_24dp"
+        android:buttonTint="@color/favorite_checkbox_tint"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@id/recipe_content"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
-        android:src="@drawable/ic_star_border_24dp"
+        android:checkable="true"
+        android:contentDescription="@string/favorite"
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

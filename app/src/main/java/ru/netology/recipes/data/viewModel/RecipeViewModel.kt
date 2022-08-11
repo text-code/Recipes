@@ -31,7 +31,5 @@ class RecipeViewModel : ViewModel(), RecipeInteractionListener {
 
     override fun onFavoriteClicked(recipe: Recipe) = repository.favorite(recipe.id)
     override fun onDeleteClicked(recipe: Recipe) = repository.delete(recipe.id)
-    override fun onEditClicked(recipe: Recipe) {
-        currentRecipe.value = recipe
-    }
+    override fun onEditClicked(recipe: Recipe) { currentRecipe.value = recipe }
 }

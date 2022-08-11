@@ -4,4 +4,5 @@
     <string name="recipe_text">Текст рецепта</string>
     <string name="save">Сохранить</string>
     <string name="edit">Изменить</string>
+    <string name="favorite">Избранное</string>
 </resources>
