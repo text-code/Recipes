@@ -52,6 +52,8 @@ internal class RecipeAdapter(
 
         init {
             binding.favorite.setOnClickListener { listener.onFavoriteClicked(recipe) }
+            binding.share.setOnClickListener { listener.onShareClicked(recipe) }
+            binding.menu.setOnClickListener { popupMenu.show() }
         }
 
         fun bind(recipe: Recipe) {
@@ -62,7 +64,7 @@ internal class RecipeAdapter(
                 recipeName.text = recipe.recipeName
                 recipeContent.text = recipe.content
                 favorite.isChecked = recipe.favorite
-                menu.setOnClickListener { popupMenu.show() }
+                share.isChecked = recipe.share
             }
         }
     }

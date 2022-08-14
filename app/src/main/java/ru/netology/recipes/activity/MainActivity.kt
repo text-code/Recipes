@@ -1,8 +1,10 @@
-package ru.netology.recipes
+package ru.netology.recipes.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.data.viewModel.RecipeViewModel
 import ru.netology.recipes.databinding.ActivityMainBinding
@@ -36,6 +38,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.currentRecipe.observe(this) { currentRecipe ->
             binding.content.setText(currentRecipe?.content)
+        }
+
+        viewModel.shareEvent.observe(this) { recipeContent ->
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, recipeContent)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(
+                intent, getString(R.string.share)
+            )
+            startActivity(shareIntent)
         }
     }
 }

@@ -8,6 +8,7 @@ interface RecipeRepository {
     val data: LiveData<List<Recipe>>
 
     fun favorite(recipeId: Long)
+    fun share(recipeId: Long)
     fun save(recipe: Recipe)
     fun delete(recipeId: Long)
 

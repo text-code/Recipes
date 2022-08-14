@@ -29,6 +29,13 @@ class RecipeRepositoryInMemory : RecipeRepository {
         }
     }
 
+    override fun share(recipeId: Long) {
+        data.value = recipes.map {
+            if (it.id != recipeId) it
+            else it.copy(share = true)
+        }
+    }
+
     override fun save(recipe: Recipe) {
         if (recipe.id == RecipeRepository.NEW_RECIPE_ID) insert(recipe) else update(recipe)
     }

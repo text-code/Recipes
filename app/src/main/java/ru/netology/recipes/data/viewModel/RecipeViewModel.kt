@@ -1,16 +1,25 @@
 package ru.netology.recipes.data.viewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ru.netology.recipes.adapter.RecipeInteractionListener
 import ru.netology.recipes.data.RecipeRepository
-import ru.netology.recipes.data.impl.RecipeRepositoryInMemory
+import ru.netology.recipes.data.impl.FileRecipeRepository
+import ru.netology.recipes.util.SingleLiveEvent
 import ru.netology.recipes.utilsDO.Recipe
 
-class RecipeViewModel : ViewModel(), RecipeInteractionListener {
-    private val repository: RecipeRepository = RecipeRepositoryInMemory()
+//class RecipeViewModel : ViewModel(), RecipeInteractionListener {
+//    private val repository: RecipeRepository = RecipeRepositoryInMemory()
+
+class RecipeViewModel(
+    application: Application
+) : AndroidViewModel(application), RecipeInteractionListener {
+    private val repository: RecipeRepository = FileRecipeRepository(application)
 
     val data by repository::data
+
+    val shareEvent = SingleLiveEvent<String>()
 
     val currentRecipe = MutableLiveData<Recipe?>()
 
@@ -29,7 +38,18 @@ class RecipeViewModel : ViewModel(), RecipeInteractionListener {
     }
 
 
-    override fun onFavoriteClicked(recipe: Recipe) = repository.favorite(recipe.id)
-    override fun onDeleteClicked(recipe: Recipe) = repository.delete(recipe.id)
-    override fun onEditClicked(recipe: Recipe) { currentRecipe.value = recipe }
+    override fun onFavoriteClicked(recipe: Recipe) =
+        repository.favorite(recipe.id)
+
+    override fun onShareClicked(recipe: Recipe) {
+        repository.share(recipe.id)
+        shareEvent.value = recipe.content
+    }
+
+    override fun onDeleteClicked(recipe: Recipe) =
+        repository.delete(recipe.id)
+
+    override fun onEditClicked(recipe: Recipe) {
+        currentRecipe.value = recipe
+    }
 }
