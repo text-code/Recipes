@@ -1,7 +1,7 @@
 package ru.netology.recipes.data
 
 import androidx.lifecycle.LiveData
-import ru.netology.recipes.utilsDO.Recipe
+import ru.netology.recipes.dto.Recipe
 
 interface RecipeRepository {
 

@@ -1,4 +1,4 @@
-package ru.netology.recipes.utilsDO
+package ru.netology.recipes.dto
 
 import kotlinx.serialization.Serializable
 

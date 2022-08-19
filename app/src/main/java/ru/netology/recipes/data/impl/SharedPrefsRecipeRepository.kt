@@ -8,7 +8,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import ru.netology.recipes.data.RecipeRepository
-import ru.netology.recipes.utilsDO.Recipe
+import ru.netology.recipes.dto.Recipe
 import kotlin.properties.Delegates
 
 class SharedPrefsRecipeRepository(

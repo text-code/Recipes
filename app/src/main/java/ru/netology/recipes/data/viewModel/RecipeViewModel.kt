@@ -5,21 +5,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import ru.netology.recipes.adapter.RecipeInteractionListener
 import ru.netology.recipes.data.RecipeRepository
-import ru.netology.recipes.data.impl.FileRecipeRepository
+import ru.netology.recipes.data.impl.SharedPrefsRecipeRepository
 import ru.netology.recipes.util.SingleLiveEvent
-import ru.netology.recipes.utilsDO.Recipe
-
-//class RecipeViewModel : ViewModel(), RecipeInteractionListener {
-//    private val repository: RecipeRepository = RecipeRepositoryInMemory()
+import ru.netology.recipes.dto.Recipe
 
 class RecipeViewModel(
     application: Application
 ) : AndroidViewModel(application), RecipeInteractionListener {
-    private val repository: RecipeRepository = FileRecipeRepository(application)
+    private val repository: RecipeRepository = SharedPrefsRecipeRepository(application)
 
     val data by repository::data
 
     val shareEvent = SingleLiveEvent<String>()
+
+    val contentRecipe = SingleLiveEvent<String>()
+
+    val selectedRecipe = SingleLiveEvent<Recipe>()
 
     val currentRecipe = MutableLiveData<Recipe?>()
 
@@ -37,12 +38,19 @@ class RecipeViewModel(
         currentRecipe.value = null
     }
 
+    override fun onAddClicked() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onContentClicked(recipe: Recipe) {
+        selectedRecipe.value = recipe
+    }
 
     override fun onFavoriteClicked(recipe: Recipe) =
         repository.favorite(recipe.id)
 
     override fun onShareClicked(recipe: Recipe) {
-        repository.share(recipe.id)
+//        repository.share(recipe.id)
         shareEvent.value = recipe.content
     }
 
@@ -51,5 +59,6 @@ class RecipeViewModel(
 
     override fun onEditClicked(recipe: Recipe) {
         currentRecipe.value = recipe
+        contentRecipe.value = recipe.content
     }
 }

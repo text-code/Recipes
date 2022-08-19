@@ -6,4 +6,6 @@
     <string name="edit">Изменить</string>
     <string name="favorite">Избранное</string>
     <string name="share">Поделиться</string>
+    <string name="save_recipe">Сохранить рецепт</string>
+    <string name="add_new_recipe">Добавить новый рецепт</string>
 </resources>

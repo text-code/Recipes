@@ -6,4 +6,6 @@
     <string name="edit">Edit</string>
     <string name="favorite">Favorite</string>
     <string name="share">Shere</string>
+    <string name="save_recipe">Save recipe</string>
+    <string name="add_new_recipe">Add new recipe</string>
 </resources>

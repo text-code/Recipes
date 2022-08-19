@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.recipes.R
 import ru.netology.recipes.databinding.RecipeBinding
-import ru.netology.recipes.utilsDO.Recipe
+import ru.netology.recipes.dto.Recipe
 
 internal class RecipeAdapter(
     private val interactionListener: RecipeInteractionListener
@@ -54,6 +54,7 @@ internal class RecipeAdapter(
             binding.favorite.setOnClickListener { listener.onFavoriteClicked(recipe) }
             binding.share.setOnClickListener { listener.onShareClicked(recipe) }
             binding.menu.setOnClickListener { popupMenu.show() }
+            binding.recipeContent.setOnClickListener { listener.onContentClicked(recipe) }
         }
 
         fun bind(recipe: Recipe) {
