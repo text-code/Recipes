@@ -56,7 +56,8 @@ class SharedPrefsRecipeRepository(
     override fun share(recipeId: Long) {
         recipes = recipes.map {
             if (it.id != recipeId) it
-            else it.copy(share = true)
+            // ??
+            else it.copy(share = it.share + 1)
         }
     }
 

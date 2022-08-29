@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Рецепты</string>
     <string name="remove">Удалить</string>
     <string name="recipe_text">Текст рецепта</string>
     <string name="save">Сохранить</string>
@@ -8,4 +9,8 @@
     <string name="share">Поделиться</string>
     <string name="save_recipe">Сохранить рецепт</string>
     <string name="add_new_recipe">Добавить новый рецепт</string>
+    <string name="all_recipes">Все рецепты</string>
+    <string name="author_name">Автор</string>
+    <string name="recipe_name">Название рецепта</string>
+    <string name="recipe">Рецепт</string>
 </resources>

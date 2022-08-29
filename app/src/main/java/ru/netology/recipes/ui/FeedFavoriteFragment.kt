@@ -10,12 +10,12 @@ import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
 import ru.netology.recipes.data.viewModel.RecipeViewModel
-import ru.netology.recipes.databinding.FragmentSelectedRecipeBinding
+import ru.netology.recipes.databinding.FragmentFeedBinding
 import ru.netology.recipes.ui.FeedFragment.Companion.idArg
 import ru.netology.recipes.ui.FeedFragment.Companion.shareEvent
 import ru.netology.recipes.ui.FeedFragment.Companion.textArg
 
-class SelectedRecipeFragment : Fragment() {
+class FeedFavoriteFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
@@ -33,30 +33,31 @@ class SelectedRecipeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
-        val binding = FragmentSelectedRecipeBinding.inflate(inflater, container, false)
-
-        val viewHolder = RecipeAdapter.ViewHolder(binding.recipeLayout, viewModel)
-
+        val adapter = RecipeAdapter(viewModel)
+        binding.recipeRecyclerView.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            val recipe = recipes.firstOrNull { it.id == arguments?.idArg }
-            if (recipe != null) {
-                viewHolder.bind(recipe)
-            } else {
-                findNavController().navigateUp()
-            }
+            adapter.submitList(recipes.filter { it.favorite })
         }
 
-        viewModel.contentRecipe.observe(viewLifecycleOwner) { text ->
+        binding.addRecipe.setOnClickListener {
+            findNavController().navigate(R.id.action_feedFavoriteFragment_to_newRecipeFragment)
+        }
+
+        viewModel.contentRecipe.observe(viewLifecycleOwner) { initialContent ->
             findNavController().navigate(
-                R.id.action_selectedRecipeFragment_to_newRecipeFragment,
-                Bundle().apply { textArg = text }
+                R.id.action_feedFavoriteFragment_to_newRecipeFragment,
+                Bundle().apply { textArg = initialContent }
             )
         }
 
         viewModel.selectedRecipe.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                R.id.action_feedFavoriteFragment_to_selectedRecipeFragment,
+                Bundle().apply { idArg = it.id }
+            )
         }
-
         return binding.root
     }
 }

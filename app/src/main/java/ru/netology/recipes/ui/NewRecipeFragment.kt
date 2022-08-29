@@ -28,8 +28,10 @@ class NewRecipeFragment : Fragment() {
 
         binding.ok.setOnClickListener {
             if (!binding.edit.text.isNullOrBlank()) {
+                val recipeName = binding.recipeName.text.toString()
+                val authorName = binding.authorName.text.toString()
                 val content = binding.edit.text.toString()
-                viewModel.onSaveButtonClicked(content)
+                viewModel.onSaveButtonClicked(recipeName, authorName, content)
             }
             findNavController().navigateUp()
         }

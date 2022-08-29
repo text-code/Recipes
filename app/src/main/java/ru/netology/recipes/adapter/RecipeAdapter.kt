@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.recipes.R
 import ru.netology.recipes.databinding.RecipeBinding
 import ru.netology.recipes.dto.Recipe
+import kotlin.math.floor
 
 internal class RecipeAdapter(
     private val interactionListener: RecipeInteractionListener
@@ -65,9 +66,18 @@ internal class RecipeAdapter(
                 recipeName.text = recipe.recipeName
                 recipeContent.text = recipe.content
                 favorite.isChecked = recipe.favorite
-                share.isChecked = recipe.share
+                share.text = counter(recipe.share)
             }
         }
+
+        private fun counter(value: Int) =
+            when {
+                (value in 1_000..1_099) -> "1K"
+                (value in 1_100..9_999) -> (floor((value / 100).toDouble()) / 10).toString() + "K"
+                (value in 10_000..999_999) -> (value / 1_000).toString() + "K"
+                (value >= 1_000_000) -> (value / 1_000_000).toString() + "M"
+                else -> value.toString()
+            }
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Recipe>() {

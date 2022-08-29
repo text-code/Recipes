@@ -17,6 +17,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:src="@drawable/ic_add_24dp"
         android:id="@+id/add_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

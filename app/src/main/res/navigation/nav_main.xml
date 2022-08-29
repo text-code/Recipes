@@ -29,4 +29,15 @@
             android:id="@+id/action_selectedRecipeFragment_to_newRecipeFragment"
             app:destination="@id/newRecipeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/feedFavoriteFragment"
+        android:name="ru.netology.recipes.ui.FeedFavoriteFragment"
+        android:label="FeedFavoriteFragment" >
+        <action
+            android:id="@+id/action_feedFavoriteFragment_to_selectedRecipeFragment"
+            app:destination="@id/selectedRecipeFragment" />
+        <action
+            android:id="@+id/action_feedFavoriteFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
 </navigation>
