@@ -19,7 +19,6 @@ class FeedFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.shareEvent.observe(this) { postContent ->

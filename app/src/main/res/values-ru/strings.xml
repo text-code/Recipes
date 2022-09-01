@@ -13,4 +13,5 @@
     <string name="author_name">Автор</string>
     <string name="recipe_name">Название рецепта</string>
     <string name="recipe">Рецепт</string>
+    <string name="search_hint">Найти рецепт</string>
 </resources>

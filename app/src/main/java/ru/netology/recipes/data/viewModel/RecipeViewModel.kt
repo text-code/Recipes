@@ -6,10 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.recipes.adapter.RecipeInteractionListener
 import ru.netology.recipes.data.RecipeRepository
 import ru.netology.recipes.data.impl.RecipeRepositoryImpl
-import ru.netology.recipes.data.impl.SharedPrefsRecipeRepository
 import ru.netology.recipes.db.AppDb
-import ru.netology.recipes.util.SingleLiveEvent
 import ru.netology.recipes.dto.Recipe
+import ru.netology.recipes.util.SingleLiveEvent
 
 class RecipeViewModel(
     application: Application

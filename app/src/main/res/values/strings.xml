@@ -12,4 +12,5 @@
     <string name="author_name">Author</string>
     <string name="recipe_name">Recipe name</string>
     <string name="recipe">Recipe</string>
+    <string name="search_hint">Search recipes</string>
 </resources>
