@@ -14,4 +14,5 @@
     <string name="recipe_name">Название рецепта</string>
     <string name="recipe">Рецепт</string>
     <string name="search_hint">Найти рецепт</string>
+    <string name="background">Задний фон</string>
 </resources>

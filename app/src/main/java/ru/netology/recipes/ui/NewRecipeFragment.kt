@@ -1,9 +1,11 @@
 package ru.netology.recipes.ui
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,7 +26,15 @@ class NewRecipeFragment : Fragment() {
 
         arguments?.textArg?.let(binding.edit::setText)
 
+
         binding.edit.requestFocus()
+
+//        val image = registerForActivityResult(ActivityResultContracts.OpenDocument()) {
+//        }
+//
+//        binding.addImageRecipe.setOnClickListener {
+//            image.launch(arrayOf("image/*"))
+//        }
 
         binding.ok.setOnClickListener {
             if (!binding.edit.text.isNullOrBlank()) {

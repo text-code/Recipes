@@ -16,6 +16,7 @@
         tools:listitem="@layout/recipe" />
 
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:src="@drawable/ic_add_24dp"
         android:id="@+id/add_recipe"
@@ -26,4 +27,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:visibility="visible"
+        android:src="@drawable/nothing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background" />
 </androidx.constraintlayout.widget.ConstraintLayout>

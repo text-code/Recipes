@@ -31,6 +31,8 @@ class RecipeViewModel(
 
     val selectedRecipe = SingleLiveEvent<Recipe>()
 
+    val filterData = MutableLiveData<List<Recipe>>()
+
     private val currentRecipe = MutableLiveData<Recipe?>()
 
     fun onSaveButtonClicked(recipeName: String, authorName: String, content: String) {
@@ -47,8 +49,8 @@ class RecipeViewModel(
         currentRecipe.value = null
     }
 
-    override fun onAddClicked() {
-        TODO("Not yet implemented")
+    fun filter(text: String) {
+        filterData.value = data.value?.filter { it.recipeName.startsWith(text) }
     }
 
     override fun onContentClicked(recipe: Recipe) {

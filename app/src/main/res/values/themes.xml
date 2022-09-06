@@ -39,4 +39,8 @@
         <item name="minWidth">@dimen/icon_button_min_size</item>
     </style>
 
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/font_bottom_navigation_view</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

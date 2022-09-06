@@ -38,7 +38,11 @@ class FeedFavoriteFragment : Fragment() {
         val adapter = RecipeAdapter(viewModel)
         binding.recipeRecyclerView.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            adapter.submitList(recipes.filter { it.favorite })
+            val favoriteRecipes = recipes.filter { it.favorite }
+            adapter.submitList(favoriteRecipes)
+
+            if (favoriteRecipes.isNotEmpty())
+                binding.backgroundImage.visibility = View.INVISIBLE
         }
 
         binding.addRecipe.setOnClickListener {
