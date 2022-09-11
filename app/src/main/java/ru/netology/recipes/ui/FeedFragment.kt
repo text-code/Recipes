@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import ru.netology.recipes.R
 import ru.netology.recipes.adapter.RecipeAdapter
@@ -17,7 +19,7 @@ import ru.netology.recipes.data.viewModel.RecipeViewModel
 import ru.netology.recipes.databinding.FragmentFeedBinding
 import ru.netology.recipes.util.StringArg
 
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val viewModel: RecipeViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
@@ -50,7 +52,6 @@ class FeedFragment : Fragment() {
         }
 
         binding.addRecipe.setOnClickListener {
-//            image.launch(arrayOf("image/*"))
             findNavController().navigate(R.id.action_feedFragment_to_newRecipeFragment)
         }
 
@@ -67,6 +68,23 @@ class FeedFragment : Fragment() {
                 Bundle().apply { idArg = it.id }
             )
         }
+
+        //region Spinner from documentation
+        val spinner: Spinner = binding.cuisines
+        spinner.onItemSelectedListener = this
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.list_of_cuisines,
+            android.R.layout.simple_spinner_item
+        ).also { arrayAdapter ->
+            // Specify the layout to use when the list of choices appears
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = arrayAdapter
+        }
+        //endregion
+
         return binding.root
     }
 
@@ -76,7 +94,7 @@ class FeedFragment : Fragment() {
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.options_menu, menu)
+                menuInflater.inflate(R.menu.options_search_menu, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -84,16 +102,14 @@ class FeedFragment : Fragment() {
                     R.id.search -> {
                         val searchView = menuItem.actionView as SearchView
                         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
                             override fun onQueryTextSubmit(query: String?): Boolean {
                                 return false
                             }
 
-
                             override fun onQueryTextChange(newText: String?): Boolean {
-
                                 if (!newText.isNullOrBlank())
                                     viewModel.filter(newText)
-
                                 return false
                             }
                         })
@@ -102,29 +118,16 @@ class FeedFragment : Fragment() {
                     else -> false
                 }
             }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        })
     }
 
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (position != 0)
+            viewModel.filterCuisines(position)
+    }
 
-//    private fun filter(newText: String?) {
-//        val binding = FragmentFeedBinding.inflate(layoutInflater)
-//        val adapter = RecipeAdapter(viewModel)
-//        binding.recipeRecyclerView.adapter = adapter
-//
-//        val recipes = viewModel.data.value
-//        val searchRecipes = recipes?.filter { it.recipeName == newText }
-//
-//        adapter.submitList(searchRecipes)
-//
-//
-////        viewModel.data.observe(viewLifecycleOwner) { recipes ->
-////            val searchRecipe = recipes.filter { it.recipeName == query }
-////
-////                                    if (searchRecipe.isNotEmpty())
-////            adapter.submitList(searchRecipe)
-////        }
-//    }
-
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+    }
 
     companion object {
         private const val ID_POST_KEY = "ID_POST"

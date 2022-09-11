@@ -35,7 +35,7 @@ class RecipeViewModel(
 
     private val currentRecipe = MutableLiveData<Recipe?>()
 
-    fun onSaveButtonClicked(recipeName: String, authorName: String, content: String) {
+    fun onSaveButtonClicked(recipeName: String, authorName: String, content: String, cuisine: Int) {
         if (content.isBlank()) return
         val recipe = currentRecipe.value?.copy(
             content = content
@@ -43,7 +43,8 @@ class RecipeViewModel(
             id = RecipeRepository.NEW_RECIPE_ID,
             recipeName = recipeName,
             authorName = authorName,
-            content = content
+            content = content,
+            cuisine = cuisine
         )
         repository.save(recipe)
         currentRecipe.value = null
@@ -53,7 +54,11 @@ class RecipeViewModel(
         filterData.value = data.value?.filter { it.recipeName.startsWith(text) }
     }
 
-    override fun onContentClicked(recipe: Recipe) {
+    fun filterCuisines(position: Int) {
+        filterData.value = data.value?.filter { it.cuisine == position }
+    }
+
+    override fun onRecipeClicked(recipe: Recipe) {
         selectedRecipe.value = recipe
     }
 

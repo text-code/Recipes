@@ -11,15 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/add_image_recipe"
-            android:src="@drawable/ic_image_24dp"
-            android:backgroundTint="?attr/background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/recipe_name"
@@ -30,7 +21,7 @@
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/add_image_recipe"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/author_name"
@@ -49,6 +40,14 @@
             android:hint="@string/recipe"
             android:inputType="textMultiLine"
             app:layout_constraintTop_toBottomOf="@+id/author_name" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:spinnerMode="dialog"
+            android:entries="@array/list_of_cuisines"
+            app:layout_constraintTop_toBottomOf="@id/edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

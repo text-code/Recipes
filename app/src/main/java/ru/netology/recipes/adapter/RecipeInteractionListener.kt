@@ -3,7 +3,7 @@ package ru.netology.recipes.adapter
 import ru.netology.recipes.dto.Recipe
 
 interface RecipeInteractionListener {
-    fun onContentClicked(recipe: Recipe)
+    fun onRecipeClicked(recipe: Recipe)
     fun onFavoriteClicked(recipe: Recipe)
     fun onShareClicked(recipe: Recipe)
 

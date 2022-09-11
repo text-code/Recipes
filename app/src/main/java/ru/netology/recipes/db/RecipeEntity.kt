@@ -20,4 +20,6 @@ class RecipeEntity(
     val share: Int = 0,
     @ColumnInfo(name = "favorite")
     val favorite: Boolean = false,
+    @ColumnInfo(name = "cuisine")
+    val cuisine: Int
 )

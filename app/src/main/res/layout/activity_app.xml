@@ -13,7 +13,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:id="@+id/bottom_navigation"
     app:menu="@menu/nav_menu"
-    />
+    tools:ignore="MissingConstraints" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"

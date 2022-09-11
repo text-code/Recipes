@@ -9,7 +9,8 @@ internal fun RecipeEntity.toModel() = Recipe(
     recipeName = recipeName,
     content = content,
     share = share,
-    favorite = favorite
+    favorite = favorite,
+    cuisine = cuisine
 )
 
 internal fun Recipe.toEntity() = RecipeEntity(
@@ -18,5 +19,6 @@ internal fun Recipe.toEntity() = RecipeEntity(
     recipeName = recipeName,
     content = content,
     share = share,
-    favorite = favorite
+    favorite = favorite,
+    cuisine = cuisine
 )

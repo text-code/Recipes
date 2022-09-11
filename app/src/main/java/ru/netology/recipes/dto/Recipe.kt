@@ -10,4 +10,5 @@ data class Recipe(
     val content: String,
     val share: Int = 0,
     val favorite: Boolean = false,
+    val cuisine: Int
 )

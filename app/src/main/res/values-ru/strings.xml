@@ -15,4 +15,16 @@
     <string name="recipe">Рецепт</string>
     <string name="search_hint">Найти рецепт</string>
     <string name="background">Задний фон</string>
+
+    <string-array name="list_of_cuisines">
+        <item>"Все рецепты"</item>
+        <item>"Индийская"</item>
+        <item>"Испанская"</item>
+        <item>"Итальянская"</item>
+        <item>"Китайская"</item>
+        <item>"Мексиканская"</item>
+        <item>"Русская"</item>
+        <item>"Французская"</item>
+        <item>"Японская"</item>
+    </string-array>
 </resources>

@@ -2,16 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recipe"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/food_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/author_name"
@@ -21,10 +15,9 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@id/recipe_name"
         app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintStart_toEndOf="@id/food_image"
-        app:layout_constraintTop_toTopOf="@id/food_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Author Name" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -33,13 +26,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:singleLine="true"
-        app:layout_constraintBottom_toBottomOf="@id/food_image"
         app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintStart_toEndOf="@id/food_image"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/author_name"
         tools:text="Recipe Name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cuisine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+        tools:text="Cuisine" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
@@ -56,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="food_image, recipe_name, menu" />
+        app:constraint_referenced_ids="cuisine, menu" />
 
     <androidx.appcompat.widget.AppCompatImageView
         app:layout_constraintTop_toTopOf="@id/barrier_over_content"
