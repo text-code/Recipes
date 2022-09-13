@@ -1,7 +1,6 @@
 package ru.netology.recipes.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -68,11 +67,7 @@ internal class RecipeAdapter(
                 recipeContent.text = recipe.content
                 favorite.isChecked = recipe.favorite
                 share.text = counter(recipe.share)
-
-                if (recipe.cuisine != 0)
-                    cuisine.text = cuisines[recipe.cuisine]
-                else
-                    cuisine.visibility = View.INVISIBLE
+                cuisine.text = cuisines[recipe.cuisine]
             }
         }
 
@@ -85,17 +80,8 @@ internal class RecipeAdapter(
                 else -> value.toString()
             }
 
-        private val cuisines = listOf<String>(
-            "Все рецепты",
-            "Индийская",
-            "Испанская",
-            "Итальянская",
-            "Китайская",
-            "Мексиканская",
-            "Русская",
-            "Французская",
-            "Японская"
-        )
+        private val cuisines =
+            binding.root.context.resources.getStringArray(R.array.list_of_cuisines).toList()
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Recipe>() {
@@ -104,6 +90,5 @@ internal class RecipeAdapter(
 
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe) =
             oldItem == newItem
-
     }
 }

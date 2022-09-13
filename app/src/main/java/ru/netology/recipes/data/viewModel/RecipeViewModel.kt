@@ -55,7 +55,10 @@ class RecipeViewModel(
     }
 
     fun filterCuisines(position: Int) {
-        filterData.value = data.value?.filter { it.cuisine == position }
+        if (position != 0)
+            filterData.value = data.value?.filter { it.cuisine == position }
+        else
+            filterData.value = data.value
     }
 
     override fun onRecipeClicked(recipe: Recipe) {

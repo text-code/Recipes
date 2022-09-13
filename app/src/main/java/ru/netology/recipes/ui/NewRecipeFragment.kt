@@ -18,6 +18,8 @@ import ru.netology.recipes.ui.FeedFragment.Companion.textArg
 
 class NewRecipeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
+    var cuisine = 0
+
     @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,32 +51,6 @@ class NewRecipeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         //endregion
 
-        //region Warning! Untested code Spinner
-//        val arrayAdapter: ArrayAdapter<String>? = context?.let {
-//            ArrayAdapter(it, R.array.list_of_cuisines, android.R.layout.simple_spinner_item )
-//        }
-//        arrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//
-//        with(binding.spinner) {
-//            adapter = arrayAdapter
-//            setSelection(0, false)
-//            onItemSelectedListener = this@NewRecipeFragment
-//            prompt = "Select cuisine"
-//            gravity = Gravity.CENTER
-//        }
-
-//        val spinner = Spinner(context)
-//        spinner.id = NEW_SPINNER_ID
-//
-//        val ll = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//
-//        ll.setMargins(10, 40, 10, 10)
-//        linearLayout.addView(spinner)
-
-//        val spinner: Spinner = binding.spinner
-//        spinner.adapter = arrayAdapter
-        // endregion
-
         //region Add image
 //        val image = registerForActivityResult(ActivityResultContracts.OpenDocument()) {
 //        }
@@ -104,10 +80,5 @@ class NewRecipeFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-    }
-
-    companion object {
-        const val NEW_SPINNER_ID = 1
-        var cuisine = 0
     }
 }

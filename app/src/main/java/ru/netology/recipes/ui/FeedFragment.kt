@@ -28,6 +28,36 @@ class FeedFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel.shareEvent.observe(this) { postContent ->
             context?.let { shareEvent(it, postContent) }
         }
+
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.options_search_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.search -> {
+                        val searchView = menuItem.actionView as SearchView
+                        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                            override fun onQueryTextSubmit(query: String?): Boolean {
+                                return false
+                            }
+
+                            override fun onQueryTextChange(newText: String?): Boolean {
+                                if (newText != null)
+                                    viewModel.filter(newText)
+                                return false
+                            }
+                        })
+                        true
+                    }
+                    else -> false
+                }
+            }
+        })
     }
 
     override fun onCreateView(
@@ -88,41 +118,8 @@ class FeedFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val menuHost: MenuHost = requireActivity()
-
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.options_search_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.search -> {
-                        val searchView = menuItem.actionView as SearchView
-                        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-                            override fun onQueryTextSubmit(query: String?): Boolean {
-                                return false
-                            }
-
-                            override fun onQueryTextChange(newText: String?): Boolean {
-                                if (!newText.isNullOrBlank())
-                                    viewModel.filter(newText)
-                                return false
-                            }
-                        })
-                        true
-                    }
-                    else -> false
-                }
-            }
-        })
-    }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (position != 0)
             viewModel.filterCuisines(position)
     }
 
